@@ -5,14 +5,17 @@
     group: apache
     mode: '0755'
 
-- name: enable repos | RHEL repositories with label that need releasever
+- name: enable repos | RHEL repositories
   oasis_roles.satellite.repository_set:
     username: "{{ satellite_admin_username }}"
     password: "{{ satellite_admin_password }}"
     server_url: "{{ satellite_server_url }}"
     organization: "{{ satellite_organization }}"
     label: "{{ item.label }}"
-    repositories: "{{ item.repos }}"
+    repositories: "{{ item.repos | default(omit) }}"
+    all_repositories: "{{ item.all | default(omit) }}"
     state: enabled
   with_items:
     - "{{ satellite_rhel7_product }}"
+    - "{{ satellite_rhel6_product }}"
+    - "{{ satellite_rhel8_product }}"
