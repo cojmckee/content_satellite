@@ -16,6 +16,12 @@
     all_repositories: "{{ item.all | default(omit) }}"
     state: enabled
   with_items:
+    - "{{ satellite_jboss_product }}"
+    - "{{ satellite_ansible_engine_product }}"
     - "{{ satellite_rhel7_product }}"
     - "{{ satellite_rhel6_product }}"
     - "{{ satellite_rhel8_product }}"
+    - "{{ satellite_sap_product }}"
+    - "{{ satellite_openshift_product }}"
+    - "{{ satellite_rhv_product }}"
+    - "{{ satellite_sso_product }}"

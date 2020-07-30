@@ -17,12 +17,11 @@ satellite_manifest_uuid: "{{ lookup('env', 'SATELLITE_MANIFEST_UUID') }}"
 satellite_content_source: "{{ lookup('env', 'SATELLITE_CONTENT_SOURCE'| default('https://cdn.redhat.com')) }}"
 
 satellite_rhel7_product:
-  - name: "Red Hat Enterprise Linux 7 Server (RPMs)"
-    label: rhel-7-server-rpms
+  - name: "dotNET on RHEL RPMs for Red Hat Enterprise Linux 7 Server"
+    label: rhel-7-server-dotnet-rpms
     repos:
       - releasever: "7Server"
         basearch: "{{ satellite_server_basearch }}"
-    all: "false"
 
   - name: "Red Hat Enterprise Linux 7 Server (Debug RPMs)"
     label: rhel-7-server-debug-rpms
@@ -30,14 +29,23 @@ satellite_rhel7_product:
       - releasever: "7Server"
         basearch: "{{ satellite_server_basearch }}"
 
+  - name: "Red Hat Enterprise Linux 7 Server - Extras (RPMs)"
+    label: rhel-7-server-extras-rpms
+    repos:
+      - basearch: "{{ satellite_server_basearch }}"
+
+  - name: "Red Hat Enterprise Linux 7 Server (Kickstart)"
+    label: rhel-7-server-kickstart
+    all: "true"
+
   - name: "Red Hat Enterprise Linux 7 Server - Optional (RPMs)"
     label: rhel-7-server-optional-rpms
     repos:
       - releasever: "7Server"
         basearch: "{{ satellite_server_basearch }}"
 
-  - name: "Red Hat Enterprise Linux 7 Server - RH Common (RPMs)"
-    label: rhel-7-server-rh-common-rpms
+  - name: "Red Hat Enterprise Linux 7 Server (RPMs)"
+    label: rhel-7-server-rpms
     repos:
       - releasever: "7Server"
         basearch: "{{ satellite_server_basearch }}"
@@ -48,38 +56,8 @@ satellite_rhel7_product:
       - releasever: "7Server"
         basearch: "{{ satellite_server_basearch }}"
 
-  # yamllint disable-line rule:line-length
-  - name: "Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server x86_64 {{ satellite_rhelver }}"
-    label: rhel-server-rhscl-7-rpms
-    repos:
-      - releasever: "7Server"
-        basearch: "{{ satellite_server_basearch }}"
-
-  - name: "Red Hat Enterprise Linux 7 Server - Extras (RPMs)"
-    label: rhel-7-server-extras-rpms
-    repos:
-      - basearch: "{{ satellite_server_basearch }}"
-
-  # yamllint disable-line rule:line-length
-  - name: "Red Hat Satellite Tools {{ satellite_version }} (for RHEL 7 Server) (RPMs)"
-    label: rhel-7-server-satellite-tools-{{ satellite_version }}-rpms
-    repos:
-      - basearch: "{{ satellite_server_basearch }}"
-
-  - name: "Red Hat Satellite Tools {{ satellite_version }} (for RHEL 7 Server - Update Services SAP Solutions) (RPMs)"
-    label: rhel-7-server-e4s-satellite-tools-{{ satellite_version }}-rpms
-    repos:
-      - releasever: "7Server"
-        basearch: "{{ satellite_server_basearch }}"
-
-  # yamllint disable-line rule:line-length
-  - name: "Red Hat Ansible Engine 2.8 RPMs for Red Hat Enterprise Linux 7 Server"
-    label: rhel-7-server-ansible-2.8-rpms
-    repos:
-      - basearch: "{{ satellite_server_basearch }}"
-
-  - name: "Red Hat Enterprise Linux for SAP (RHEL 7 Server) (RPMs)"
-    label: rhel-sap-for-rhel-7-server-rpms
+  - name: "Red Hat Enterprise Linux Fast Datapath (RHEL 7 Server) (RPMs)"
+    label: rhel-7-fast-datapath-rpms
     repos:
       - releasever: "7Server"
         basearch: "{{ satellite_server_basearch }}"
@@ -90,29 +68,52 @@ satellite_rhel7_product:
       - releasever: "7Server"
         basearch: "{{ satellite_server_basearch }}"
 
-  - name: "Red Hat Enterprise Linux 7 Server - Update Services for SAP Solutions - Optional (RPMs)"
-    label: rhel-7-server-e4s-optional-rpms
-    repos:
-      - releasever: "7Server"
-        basearch: "{{ satellite_server_basearch }}"
+  - name: "Red Hat Satellite Capsule 6.6 (for RHEL 7 Server) (RPMs)"
+    label: rhel-7-server-satellite-capsule-6.6-rpms
+    all: "true"
 
-  - name: "Red Hat Enterprise Linux 7 Server - Update Services for SAP Solutions (RPMs)"
-    label: rhel-7-server-e4s-rpms
+  - name: "Red Hat Satellite Capsule 6.7 (for RHEL 7 Server) (RPMs)"
+    label: rhel-7-server-satellite-capsule-6.7-rpms
+    all: "true"
+
+  - name: "Red Hat Satellite Tools 6.5 (for RHEL 7 Server) (RPMs)"
+    label: rhel-7-server-satellite-tools-6.5-rpms
+    repos:
+      - basearch: "{{ satellite_server_basearch }}"
+
+  - name: "Red Hat Satellite Tools 6.6 (for RHEL 7 Server) (RPMs)"
+    label: rhel-7-server-satellite-tools-6.6-rpms
+    repos:
+      - basearch: "{{ satellite_server_basearch }}"
+
+  - name: "Red Hat Satellite Tools 6.7 (for RHEL 7 Server) (RPMs)"
+    label: rhel-7-server-satellite-tools-6.7-rpms
+    repos:
+      - basearch: "{{ satellite_server_basearch }}"
+
+  - name: "Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server"
+    label: rhel-server-rhscl-7-rpms
     repos:
       - releasever: "7Server"
         basearch: "{{ satellite_server_basearch }}"
 
 satellite_rhel6_product:
+  - name: "Red Hat Enterprise Linux 6 Server (Debug RPMs)"
+    label: rhel-6-server-debug-rpms
+    repos:
+      - releasever: "6Server"
+        basearch: "{{ satellite_server_basearch }}"
+
   - name: "Red Hat Enterprise Linux 6 Server (RPMs)"
     label: rhel-6-server-rpms
     repos:
       - releasever: "6Server"
         basearch: "{{ satellite_server_basearch }}"
 
-  - name: "Red Hat Enterprise Linux 6 Server (Debug RPMs)"
-    label: rhel-6-server-debug-rpms
+  - name: "Red Hat Enterprise Linux 6 Server (Kickstart)"
+    label: rhel-6-server-kickstart
     repos:
-      - releasever: "6Server"
+      - releasever: "6.10"
         basearch: "{{ satellite_server_basearch }}"
 
   - name: "Red Hat Enterprise Linux 6 Server - Optional (RPMs)"
@@ -133,48 +134,318 @@ satellite_rhel6_product:
       - releasever: "6Server"
         basearch: "{{ satellite_server_basearch }}"
 
-  - name: "Red Hat Satellite Tools {{ satellite_version }} (for RHEL 6 Server) (RPMs)"
-    label: rhel-6-server-satellite-tools-{{ satellite_version }}-rpms
+  - name: "Red Hat Satellite Tools 6.5 (for RHEL 6 Server) (RPMs)"
+    label: rhel-6-server-satellite-tools-6.5-rpms
     repos:
       - basearch: "{{ satellite_server_basearch }}"
 
-  - name: "Red Hat Enterprise Linux 6 Server - Extras (RPMs)"
-    label: rhel-6-server-extras-rpms
+  - name: "Red Hat Satellite Tools 6.6 (for RHEL 6 Server) (RPMs)"
+    label: rhel-6-server-satellite-tools-6.6-rpms
     repos:
       - basearch: "{{ satellite_server_basearch }}"
 
-  - name: "Red Hat Enterprise Linux for SAP (RHEL 6 Server) (RPMs)"
-    label: rhel-sap-for-rhel-6-server-rpms
+  - name: "Red Hat Satellite Tools 6.7 (for RHEL 6 Server) (RPMs)"
+    label: rhel-6-server-satellite-tools-6.7-rpms
+    repos:
+      - basearch: "{{ satellite_server_basearch }}"
+
+  - name: "Red Hat Software Collections RPMs for Red Hat Enterprise Linux 6 Server"
+    label: rhel-server-rhscl-6-rpms
     repos:
       - releasever: "6Server"
         basearch: "{{ satellite_server_basearch }}"
 
-  - name: "Red Hat Enterprise Linux High Availability (for RHEL 6 Server) (RPMs)"
-    label: rhel-ha-for-rhel-6-server-rpms
-    repos:
-      - releasever: "6Server"
-        basearch: "{{ satellite_server_basearch }}"
 
 satellite_rhel8_product:
-  - name: "Red Hat Enterprise Linux 8 for x86_64 - BaseOS RPMs 8"
+  - name: "Red Hat Enterprise Linux 8 for x86_64 - AppStream (Kickstart)"
+    label: rhel-8-for-x86_64-appstream-kickstart
+    all: "true"
+
+  - name: "Red Hat Enterprise Linux 8 for x86_64 - BaseOS (Kickstart)"
+    label: rhel-8-for-x86_64-baseos-kickstart
+    all: "true"
+
+  - name: "Red Hat Enterprise Linux 8 for x86_64 - BaseOS (RPMs)"
     label: rhel-8-for-x86_64-baseos-rpms
     repos:
       - releasever: "8"
+    all: "false"
 
   - name: "Red Hat Enterprise Linux 8 for x86_64 - AppStream (RPMs)"
     label: rhel-8-for-x86_64-appstream-rpms
     repos:
       - releasever: "8"
+    all: "false"
 
-  - name: "Red Hat Satellite Tools 6.7 for RHEL 8 x86_64 (RPMs)"
-    label: satellite-tools-{{ satellite_version }}-for-rhel-8-x86_64-rpms
-    all: "true"
+  - name: "Red Hat Enterprise Linux 8 for x86_64 - High Availability (RPMs)"
+    label: rhel-8-for-x86_64-highavailability-rpms
+    repos:
+      - releasever: "8"
+    all: "false"
 
   - name: "Red Hat Enterprise Linux 8 for x86_64 - Supplementary (RPMs)"
     label: rhel-8-for-x86_64-supplementary-rpms
     repos:
       - releasever: "8"
+    all: "false"
 
-  - name: "Red Hat Enterprise Linux 8 for x86_64 - BaseOS (Kickstart)"
-    label: rhel-8-for-x86_64-baseos-kickstart
+  - name: "Red Hat Satellite Tools 6.5 for RHEL 8 x86_64 (RPMs)"
+    label: satellite-tools-6.5-for-rhel-8-x86_64-rpms
     all: "true"
+
+  - name: "Red Hat Satellite Tools 6.6 for RHEL 8 x86_64 (RPMs)"
+    label: satellite-tools-6.6-for-rhel-8-x86_64-rpms
+    all: "true"
+
+  - name: "Red Hat Satellite Tools 6.7 for RHEL 8 x86_64 (RPMs)"
+    label: satellite-tools-6.7-for-rhel-8-x86_64-rpms
+    all: "true"
+
+satellite_ansible_engine_product:
+  - name: "Red Hat Ansible Engine 2.6 RPMs for Red Hat Enterprise Linux 7 Server"
+    label: rhel-7-server-ansible-2.6-rpms
+    all: "true"
+
+  - name: "Red Hat Ansible Engine 2.7 RPMs for Red Hat Enterprise Linux 7 Server"
+    label: rhel-7-server-ansible-2.7-rpms
+    all: "true"
+
+  - name: "Red Hat Ansible Engine 2.8 for RHEL 8 x86_64 (RPMs)"
+    label: ansible-2.8-for-rhel-8-x86_64-rpms
+    all: "true"
+
+  - name: "Red Hat Ansible Engine 2.8 RPMs for Red Hat Enterprise Linux 7 Server"
+    label: rhel-7-server-ansible-2.8-rpms
+    all: "true"
+
+  - name: "Red Hat Ansible Engine 2.9 for RHEL 8 x86_64 (RPMs)"
+    label: ansible-2.9-for-rhel-8-x86_64-rpms
+    all: "true"
+
+  - name: "Red Hat Ansible Engine 2.9 RPMs for Red Hat Enterprise Linux 7 Server"
+    label: rhel-7-server-ansible-2.9-rpms
+    all: "true"
+
+  - name: "Red Hat Ansible Engine 2 for RHEL 8 x86_64 (RPMs)"
+    label: ansible-2-for-rhel-8-x86_64-rpms
+    all: "true"
+
+  - name: "Red Hat Ansible Engine 2 RPMs for Red Hat Enterprise Linux 7 Server"
+    label: rhel-7-server-ansible-2-rpms
+    all: "true"
+
+satellite_jboss_product:
+  - name: "JBoss Core Services (RHEL 6 Server) (RPMs)"
+    label: jb-coreservices-1-for-rhel-6-server-rpms
+    repos:
+      - basearch: "{{ satellite_server_basearch }}"
+
+  - name: "JBoss Core Services (RHEL 7 Server) (RPMs)"
+    label: jb-coreservices-1-for-rhel-7-server-rpms
+    repos:
+      - basearch: "{{ satellite_server_basearch }}"
+
+  - name: "JBoss Core Services (RHEL 8) (RPMs)"
+    label: jb-coreservices-1-for-rhel-8-x86_64-rpms
+    all: "true"
+
+  - name: "JBoss Enterprise Web Server 2 (RHEL 6 Server) (RPMs)"
+    label: jb-ews-2-for-rhel-6-server-rpms
+    repos:
+      - releasever: "6Server"
+        basearch: "{{ satellite_server_basearch }}"
+
+  - name: "JBoss Enterprise Web Server 2 (RHEL 7 Server) (RPMs)"
+    label: jb-ews-2-for-rhel-7-server-rpms
+    repos:
+      - releasever: "7Server"
+        basearch: "{{ satellite_server_basearch }}"
+
+  - name: "JBoss Web Server 3 (RHEL 7 Server) (RPMs)"
+    label: jws-3-for-rhel-7-server-rpms
+    repos:
+      - releasever: "7Server"
+        basearch: "{{ satellite_server_basearch }}"
+
+  - name: "JBoss Enterprise Web Platform 5 (RHEL 6 Server) (RPMs)"
+    label: jb-ewp-5-for-rhel-6-server-rpms
+    repos:
+      - releasever: "6Server"
+        basearch: "{{ satellite_server_basearch }}"
+
+  - name: "JBoss Web Server 5 (RHEL 7 Server) (RPMs)"
+    label: jws-5-for-rhel-7-server-rpms
+    repos:
+      - basearch: "{{ satellite_server_basearch }}"
+
+  - name: "JBoss Web Server 5 (RHEL 8) (RPMs)"
+    label: jws-5-for-rhel-8-x86_64-rpms
+    all: "true"
+
+satellite_sap_product:
+  - name: "Red Hat Enterprise Linux 7 Server - Update Services for SAP Solutions - Optional (RPMs)"
+    label: rhel-7-server-e4s-optional-rpms
+    all: "true"
+
+  - name: "Red Hat Enterprise Linux 7 Server - Update Services for SAP Solutions (RPMs)"
+    label: rhel-7-server-e4s-rpms
+    all: "true"
+
+  - name: "Red Hat Enterprise Linux 8 for x86_64 - AppStream - Update Services for SAP Solutions (RPMs)"
+    label: rhel-8-for-x86_64-appstream-e4s-rpms
+    all: "true"
+
+  - name: "Red Hat Enterprise Linux 8 for x86_64 - BaseOS - Update Services for SAP Solutions (RPMs)"
+    label: rhel-8-for-x86_64-baseos-e4s-rpms
+    all: "true"
+
+  - name: "Red Hat Enterprise Linux 8 for x86_64 - SAP NetWeaver (RPMs)"
+    label: rhel-8-for-x86_64-sap-netweaver-rpms
+    repos:
+      - releasever: "8"
+    all: "false"
+
+  - name: "Red Hat Enterprise Linux 8 for x86_64 - High Availability - Update Services for SAP Solutions (RPMs)"
+    label: rhel-8-for-x86_64-highavailability-e4s-rpms
+    all: "true"
+
+  - name: "Red Hat Enterprise Linux 8 for x86_64 - SAP Solutions (RPMs)"
+    label: rhel-8-for-x86_64-sap-solutions-rpms
+    repos:
+      - releasever: "8"
+    all: "false"
+
+  - name: "Red Hat Enterprise Linux 8 for x86_64 - SAP Solutions - Update Services for SAP Solutions (RPMs)"
+    label: rhel-8-for-x86_64-sap-solutions-e4s-rpms
+    all: "true"
+
+  - name: "Red Hat Enterprise Linux for SAP HANA (RHEL 7 Server) (RPMs)"
+    label: rhel-sap-hana-for-rhel-7-server-rpms
+    repos:
+      - releasever: "7Server"
+        basearch: "{{ satellite_server_basearch }}"
+
+  - name: "Red Hat Enterprise Linux for SAP HANA (RHEL 7 Server) (RPMs)"
+    label: rhel-sap-hana-for-rhel-7-server-rpms
+    repos:
+      - releasever: "7.3"
+        basearch: "{{ satellite_server_basearch }}"
+
+  - name: "Red Hat Enterprise Linux for SAP HANA (RHEL 7 Server) (RPMs)"
+    label: rhel-sap-hana-for-rhel-7-server-rpms
+    repos:
+      - releasever: "7.4"
+        basearch: "{{ satellite_server_basearch }}"
+
+  - name: "Red Hat Enterprise Linux for SAP HANA (RHEL 7 Server) (RPMs)"
+    label: rhel-sap-hana-for-rhel-7-server-rpms
+    repos:
+      - releasever: "7.6"
+        basearch: "{{ satellite_server_basearch }}"
+
+  - name: "RHEL for SAP HANA (for RHEL 7 Server) Update Services for SAP Solutions (RPMs)"
+    label: rhel-sap-hana-for-rhel-7-server-e4s-rpms
+    repos:
+      - releasever: "7.6"
+        basearch: "{{ satellite_server_basearch }}"
+
+  - name: "RHEL for SAP HANA (for RHEL 7 Server) Update Services for SAP Solutions (RPMs)"
+    label: rhel-sap-hana-for-rhel-7-server-e4s-rpms
+    repos:
+      - releasever: "7.3"
+        basearch: "{{ satellite_server_basearch }}"
+
+  - name: "RHEL for SAP HANA (for RHEL 7 Server) Update Services for SAP Solutions (RPMs)"
+    label: rhel-sap-hana-for-rhel-7-server-e4s-rpms
+    repos:
+      - releasever: "7.4"
+        basearch: "{{ satellite_server_basearch }}"
+
+  - name: "Red Hat Enterprise Linux High Availability (for RHEL 7 Server) Update Services for SAP Solutions (RPMs)"
+    label: rhel-ha-for-rhel-7-server-e4s-rpms
+    all: "true"
+
+  - name: "Red Hat Satellite Tools 6.4 (for RHEL 7 Server - Update Services SAP Solutions) (RPMs)"
+    label: rhel-7-server-e4s-satellite-tools-6.4-rpms
+    repos:
+      - releasever: "7Server"
+        basearch: "{{ satellite_server_basearch }}"
+
+  - name: "Red Hat Satellite Tools 6.6 (for RHEL 7 Server - Update Services SAP Solutions) (RPMs)"
+    label: rhel-7-server-e4s-satellite-tools-6.6-rpms
+    all: "true"
+
+  - name: "Red Hat Satellite Tools 6.6 for RHEL 8 x86_64 - Update Services SAP Solutions (RPMs)"
+    label: satellite-tools-6.6-for-rhel-8-x86_64-e4s-rpms
+    all: "true"
+
+  - name: "Red Hat Satellite Tools 6.7 for RHEL 8 x86_64 - Update Services SAP Solutions (RPMs)"
+    label: satellite-tools-6.7-for-rhel-8-x86_64-e4s-rpms
+    all: "true"
+
+  - name: "Red Hat Satellite Tools 6.7 (for RHEL 7 Server - Update Services SAP Solutions) (RPMs)"
+    label: rhel-7-server-e4s-satellite-tools-6.6-rpms
+    all: "true"
+
+satellite_openshift_product:
+  - name: "Red Hat OpenShift Container Platform 3.10 (RPMs)"
+    label: rhel-7-server-ose-3.10-rpms
+    all: "true"
+
+  - name: "Red Hat OpenShift Container Platform 3.11 (RPMs)"
+    label: rhel-7-server-ose-3.11-rpms
+    all: "true"
+
+  - name: "Red Hat OpenShift Container Platform 3.9 (RPMs)"
+    label: rhel-7-server-ose-3.9-rpms
+    all: "true"
+
+  - name: "Red Hat OpenShift Container Platform 4.2 for RHEL 8 x86_64 (RPMs)"
+    label: rhocp-4.2-for-rhel-8-x86_64-rpms
+    all: "true"
+
+  - name: "Red Hat OpenShift Container Platform 4.2 (RPMs)"
+    label: rhel-7-server-ose-4.2-rpms
+    all: "true"
+
+satellite_rhv_product:
+  - name: "Red Hat Virtualization 4 Management Agents for RHEL 7 (RPMs)"
+    label: rhel-7-server-rhv-4-mgmt-agent-rpms
+    repos:
+      - releasever: "7Server"
+        basearch: "{{ satellite_server_basearch }}"
+
+  - name: "Red Hat Virtualization 4 Tools (RHEL 7 Server) (RPMs)"
+    label: rhel-7-server-rhv-4-tools-rpms
+    repos:
+      - basearch: "{{ satellite_server_basearch }}"
+
+  - name: "Red Hat Virtualization Manager 4 Tools (RHEL 7 Server) (RPMs)"
+    label: rhel-7-server-rhv-4-manager-tools-rpms
+    repos:
+      - basearch: "{{ satellite_server_basearch }}"
+
+  - name: "Red Hat Virtualization Host 7 Build (RPMs)"
+    label: rhel-7-server-rhvh-4-build-rpms
+    repos:
+      - basearch: "{{ satellite_server_basearch }}"
+
+  - name: "Red Hat Virtualization Manager v4.3 (RHEL 7 Server) (RPMs)"
+    label: rhel-7-server-rhv-4.3-manager-rpms
+    repos:
+      - basearch: "{{ satellite_server_basearch }}"
+
+satellite_sso_product:
+  - name: "Single Sign-On 7.3 for RHEL 8 x86_64 (RPMs)"
+    label: rh-sso-7.3-for-rhel-8-x86_64-rpms
+    all: "true"
+
+  - name: "Single Sign-On 7.3 (RHEL 6 Server) (RPMs)"
+    label: rh-sso-7.3-for-rhel-6-server-rpms
+    repos:
+      - basearch: "{{ satellite_server_basearch }}"
+
+  - name: "Single Sign-On 7.3 (RHEL 7 Server) (RPMs)"
+    label: rh-sso-7.3-for-rhel-7-server-rpms
+    repos:
+      - basearch: "{{ satellite_server_basearch }}"
